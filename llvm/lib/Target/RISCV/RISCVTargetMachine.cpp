@@ -467,6 +467,7 @@ bool RISCVPassConfig::addRegAssignAndRewriteFast() {
 
 bool RISCVPassConfig::addRegAssignAndRewriteOptimized() {
   addPass(createRVVRegAllocPass(true));
+  addPass(createRISCVReloadCSEPass());
   addPass(createVirtRegRewriter(false));
   addPass(createRISCVInsertVSETVLIPass());
   if (TM->getOptLevel() != CodeGenOptLevel::None &&
